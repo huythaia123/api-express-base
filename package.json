@@ -15,7 +15,7 @@
     },
     "keywords": [],
     "author": "Huy Thai",
-    "license": "ISC",
+    "license": "MIT",
     "description": "api express template",
     "_moduleAliases": {
         "@src": "./src"
