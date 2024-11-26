@@ -5,6 +5,7 @@ const http = require('node:http')
 const express = require('express')
 const compression = require('compression')
 const { default: helmet } = require('helmet')
+const { default: mongoose } = require('mongoose')
 const env = require('./configs/env')
 const initRoute = require('./routes')
 const router404 = require('./routes/404')
@@ -32,6 +33,22 @@ app.use(
         optionsSuccessStatus: 200,
     }),
 )
+
+/* connect mongodb */
+mongoose
+    .connect(env.MONGO_URI)
+    .then(function () {
+        console.log(`Mongo connect success.`)
+    })
+    .catch(function (err) {
+        throw err
+    })
+mongoose.connection.on('disconnected', function () {
+    console.log(`${__filename}: Mongoose disconnected from MongoDB.`)
+})
+mongoose.connection.on('error', function (err) {
+    console.error(`${__filename}: Mongoose connection error:`, err)
+})
 
 /* Serving static files in Express */
 app.use('/public', express.static(`${process.cwd()}/public`))
