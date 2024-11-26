@@ -2,10 +2,15 @@
     "name": "api_express_template",
     "version": "1.0.0",
     "main": "src/index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/huythaia123/api-express-base.git",
+        "directory": ""
+    },
     "scripts": {
         "start": "node ./src/server.js",
         "dev": "nodemon ./src/server.js",
-        "copy-env": "node ./src/configs/.configs/generateEnvFile.js",
+        "env": "node ./src/configs/.configs/generateEnvFile.js",
         "format": "npx prettier ./src --write"
     },
     "keywords": [],
