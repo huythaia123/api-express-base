@@ -4,7 +4,7 @@ function ErrorHandling(err, req, res, next) {
         message: err.message,
         statusCode: err.statusCode,
     }
-    return res.status(err.statusCode).json(_err)
+    return res.status(err.statusCode || 500).json(_err)
 }
 
 module.exports = ErrorHandling
