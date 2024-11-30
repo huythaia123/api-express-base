@@ -14,6 +14,13 @@ class SuccessApi {
         this.message = message || getReasonPhrase(statusCode)
         this.data = data
     }
+
+    /**
+     * @param {import('express').Response} res
+     */
+    jsonResponse(res) {
+        return res.status(this.statusCode).json(this)
+    }
 }
 
 module.exports.SuccessApi = SuccessApi
