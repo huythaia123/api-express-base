@@ -1,6 +1,7 @@
 /* import */
 require('module-alias/register')
 const cors = require('cors')
+const morgan = require('morgan')
 const http = require('node:http')
 const express = require('express')
 const compression = require('compression')
@@ -12,6 +13,19 @@ const router404 = require('./routes/404')
 const ErrorHandling = require('./middlewares/ErrorHandling')
 /* ------------------------------------------------------------------------- */
 
+/* corsSetting */
+const corsSetting = {
+    origin: '*',
+    methods: ['*'],
+    allowedHeaders: ['*'],
+    exposedHeaders: [],
+    credentials: false,
+    maxAge: 0,
+    preflightContinue: false,
+    optionsSuccessStatus: 200,
+}
+
+/* app */
 const port = env.PORT
 const app = express()
 const server = http.createServer(app)
@@ -20,19 +34,9 @@ const server = http.createServer(app)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(helmet())
+app.use(morgan('dev'))
 app.use(compression({ level: -1 }))
-app.use(
-    cors({
-        origin: '*',
-        methods: ['*'],
-        allowedHeaders: ['*'],
-        exposedHeaders: [],
-        credentials: false,
-        maxAge: 0,
-        preflightContinue: false,
-        optionsSuccessStatus: 200,
-    }),
-)
+app.use(cors(corsSetting))
 
 /* connect mongodb */
 mongoose
