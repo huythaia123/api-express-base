@@ -15,14 +15,14 @@ const ErrorHandling = require('./middlewares/ErrorHandling')
 
 /* corsSetting */
 const corsSetting = {
-    origin: '*',
-    methods: ['*'],
-    allowedHeaders: ['*'],
-    exposedHeaders: [],
-    credentials: false,
-    maxAge: 0,
-    preflightContinue: false,
-    optionsSuccessStatus: 200,
+  origin: '*',
+  methods: ['*'],
+  allowedHeaders: ['*'],
+  exposedHeaders: [],
+  credentials: false,
+  maxAge: 0,
+  preflightContinue: false,
+  optionsSuccessStatus: 200,
 }
 
 /* app */
@@ -40,18 +40,18 @@ app.use(cors(corsSetting))
 
 /* connect mongodb */
 mongoose
-    .connect(env.MONGO_URI)
-    .then(function () {
-        console.log(`Mongo connect success.`)
-    })
-    .catch(function (err) {
-        throw err
-    })
+  .connect(env.MONGO_URI)
+  .then(function () {
+    console.log(`Mongo connect success.`)
+  })
+  .catch(function (err) {
+    throw err
+  })
 mongoose.connection.on('disconnected', function () {
-    console.log(`${__filename}: Mongoose disconnected from MongoDB.`)
+  console.log(`${__filename}: Mongoose disconnected from MongoDB.`)
 })
 mongoose.connection.on('error', function (err) {
-    console.error(`${__filename}: Mongoose connection error:`, err)
+  console.error(`${__filename}: Mongoose connection error:`, err)
 })
 
 /* Serving static files in Express */
@@ -68,5 +68,5 @@ app.use(ErrorHandling)
 
 /* ------------------------------------------------------------------------- */
 server.listen(port, () => {
-    console.log('App running on port: ' + port)
+  console.log('App running on port: ' + port)
 })
