@@ -26,7 +26,7 @@ const corsSetting = {
 }
 
 /* app */
-const port = env.PORT
+const PORT = env.PORT
 const app = express()
 const server = http.createServer(app)
 
@@ -42,7 +42,7 @@ app.use(cors(corsSetting))
 mongoose
   .connect(env.MONGO_URI)
   .then(function () {
-    console.log(`Mongo connect success.`)
+    console.log(`MongoDB Connected.`)
   })
   .catch(function (err) {
     throw err
@@ -67,6 +67,6 @@ app.use(router404)
 app.use(ErrorHandling)
 
 /* ------------------------------------------------------------------------- */
-server.listen(port, () => {
-  console.log('App running on port: ' + port)
+server.listen(PORT, () => {
+  console.log('App running on port: ' + PORT)
 })

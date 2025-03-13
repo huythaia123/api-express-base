@@ -3,6 +3,7 @@ const express = require('express')
 
 const router = express.Router()
 
+// [get] /api
 router.get('/', home)
 
 module.exports = router
