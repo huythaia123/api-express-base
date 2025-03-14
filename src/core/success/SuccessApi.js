@@ -9,10 +9,9 @@ class SuccessApi {
    * @param {number} params.statusCode - HTTP status code (default is 200).
    * @param {*}      params.data - Data returned from API.
    */
-  constructor({ message = '', statusCode = 200, data = null, ...rest }) {
+  constructor({ message = '', statusCode = 200, ...rest }) {
     this.statusCode = statusCode
     this.message = message || getReasonPhrase(statusCode)
-    this.data = data
     Object.assign(this, rest)
   }
 
